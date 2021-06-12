@@ -23,8 +23,15 @@ describe('Inbox', () => {
   it('deploys a contract', async () => {
     assert.ok(inbox.options.address);
     const message = await inbox.methods.message().call();
-    console.log(message);
     assert.strictEqual(message, INITIAL_STRING);
     //assert.strictEqual(car.park(), 'stopped');
+  })
+
+  it('sets a new message', async () => {
+    await inbox.methods.setMessage('bye here!').send({
+      from: accounts[0]
+    });
+    const message = await inbox.methods.message().call();
+    assert.strictEqual(message, 'bye here!');
   })
 })
