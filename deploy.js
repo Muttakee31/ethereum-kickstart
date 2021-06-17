@@ -12,7 +12,7 @@ const deploy = async () => {
   const accounts = await web3.eth.getAccounts();
   console.log('deploying from ' + accounts[0]);
   const result = await new web3.eth.Contract(JSON.parse(interface)).deploy({
-    data: bytecode, arguments: ['Hello world!']
+    data: bytecode
   }).send({from: accounts[0], gas: '1000000'});
   console.log(result.options.address);
 }
