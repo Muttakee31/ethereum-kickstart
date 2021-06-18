@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "next dev",
     "test": "mocha"
   },
   "author": "",
@@ -15,6 +16,8 @@
     "next": "^11.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^2.0.3",
     "solc": "^0.4.17",
     "truffle-hdwallet-provider": "^1.0.17",
     "web3": "^1.0.0-beta.26"
