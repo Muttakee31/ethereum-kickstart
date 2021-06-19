@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {Form, Button, Input, Message} from "semantic-ui-react";
 import factory from "../../ethereum/factory";
 import web3 from "../../ethereum/web3";
+import {Router} from '../../routes';
 
 const CreateCampaign = ({}) => {
   const [minContribution, setMinContribution] = useState('');
@@ -9,9 +10,9 @@ const CreateCampaign = ({}) => {
   const [loadingFlag, setLoadingFlag] = useState(false);
 
   const onSubmit = async (event) => {
+    event.preventDefault();
     setErrorMessage('');
     setLoadingFlag(true);
-    event.preventDefault();
     try{
       const accounts = await web3.eth.getAccounts();
       console.log(accounts);
@@ -19,6 +20,7 @@ const CreateCampaign = ({}) => {
         from: accounts[0]
       });
       setLoadingFlag(false);
+      Router.pushRoute('/');
     } catch (e) {
       console.log(e);
       setLoadingFlag(false);
@@ -40,7 +42,7 @@ const CreateCampaign = ({}) => {
                    onChange={(e) => setMinContribution(e.target.valueAsNumber)}/>
           </Form.Field>
           <Message error header="Oops!" content={errorMessage}/>
-          <Button primary loading={loadingFlag} >Create!</Button>
+          <Button primary loading={loadingFlag}>Create!</Button>
         </Form>
       </>
   )
