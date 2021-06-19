@@ -1,6 +1,8 @@
 import React from "react";
 import App from "next/app";
 import Head from "next/head";
+import Header from "../components/Header";
+import {Container} from "semantic-ui-react";
 // import 'semantic-ui-css/semantic.min.css';
 
 
@@ -19,7 +21,7 @@ class MyApp extends App {
     const {Component, pageProps} = this.props;
 
     return(
-        <div>
+        <Container>
           <Head>
             <link
                 async
@@ -27,11 +29,12 @@ class MyApp extends App {
                 href="//cdn.jsdelivr.net/npm/semantic-ui@2.0.3/dist/semantic.min.css"
             />
             <script async src="//cdn.jsdelivr.net/npm/semantic-ui@2.0.3/dist/semantic.min.js"/>
-            <link rel='icon' href='/icon.ico'/>
+            <link rel='icon' href='../public/icon.ico'/>
             <title>Kickstarter</title>
           </Head>
+          <Header />
           <Component {...pageProps} />
-        </div>
+        </Container>
     )
   }
 }

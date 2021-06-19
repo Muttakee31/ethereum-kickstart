@@ -19,8 +19,8 @@ const CampaignIndex = ({campaignList}) => {
 
   return(
       <>
+        <Button icon='add circle' content='Create campaign' primary floated='right' />
         {renderCampaigns()}
-        <Button icon='add icon' content='Create campaign' primary />
       </>
   )
 }
