@@ -1,6 +1,7 @@
 import React from "react";
 import instance from "../ethereum/factory";
 import {Card, Button} from "semantic-ui-react";
+import { Link } from "../routes";
 
 const CampaignIndex = ({campaignList}) => {
 
@@ -9,7 +10,11 @@ const CampaignIndex = ({campaignList}) => {
       return (
           {
             header: item,
-            description: 'View Campaign',
+            description: (
+                <Link route={`campaigns/${item}`}>
+                  <a>View Campaign</a>
+                </Link>
+            ),
             fluid: true
           }
       )
@@ -19,7 +24,11 @@ const CampaignIndex = ({campaignList}) => {
 
   return(
       <>
-        <Button icon='add circle' content='Create campaign' primary floated='right' />
+        <Link to="/campaigns/newcampaign">
+          <a>
+            <Button icon='add circle' content='Create campaign' primary floated='right' />
+          </a>
+        </Link>
         {renderCampaigns()}
       </>
   )
