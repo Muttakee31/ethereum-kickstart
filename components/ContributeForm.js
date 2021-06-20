@@ -35,7 +35,7 @@ const ContributeForm = ({address}) => {
   return(
       <>
         <h3>
-          Create a Campaign
+          Contribute here
         </h3>
 
         <Form onSubmit={onSubmit} error={!!errorMessage}>

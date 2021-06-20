@@ -88,9 +88,9 @@ contract Campaign {
         selectedRequest.completed = true;
     }
 
-    function getAllRequests() public view returns (Request[]){
+/*    function getAllRequests() public view returns (Request[]){
         return requests;
-    }
+    }*/
 
     function getSummary() public view returns (uint, uint, uint, uint, address) {
         return (
