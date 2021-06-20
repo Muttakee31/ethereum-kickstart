@@ -31,7 +31,7 @@ contract Campaign {
     address public manager;
     uint public minimumContribution;
     mapping(address => bool) public approvers;
-    Request[] private requests;
+    Request[] public requests;
     uint public approversCount;
 
     modifier restricted() {
@@ -88,7 +88,7 @@ contract Campaign {
         selectedRequest.completed = true;
     }
 
-    function getAllRequests() private view returns (Request[]){
+    function getAllRequests() public view returns (Request[]){
         return requests;
     }
 

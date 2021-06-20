@@ -24,7 +24,7 @@ const RequestIndex = ({address, requests, requestCount, approverCount}) => {
   return(
       <>
         <h3>List of requests</h3>
-        <Link route={`campaigns/${address}/requests/new`}>
+        <Link route={`/campaigns/${address}/requests/new`}>
           <a>
             <Button primary floated='right' style={{marginBottom: 10}}>Add request</Button>
           </a>
@@ -53,14 +53,15 @@ const RequestIndex = ({address, requests, requestCount, approverCount}) => {
 RequestIndex.getInitialProps = async (props) => {
   const { address } = props.query;
   const campaign = Campaign(address);
-  console.log(campaign);
-  const requestCount = campaign.methods.getRequestCount().call();
-  const approverCount = campaign.methods.approvers().call();
-  const requests = await Promise.all(
+  const requestCount = await campaign.methods.getRequestCount().call();
+  const approverCount = await campaign.methods.approversCount().call();
+  console.log(requestCount);
+  const requests = []
+  /*const requests = await Promise.all(
       Array(requestCount)
           .fill().map((element, index) => {
         return campaign.methods.requests(index).call();
-      }));
+      }));*/
   return {address, requests, requestCount, approverCount};
 }
 export default RequestIndex;

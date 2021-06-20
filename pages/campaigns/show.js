@@ -5,17 +5,9 @@ import ContributeForm from "../../components/ContributeForm";
 import web3 from "../../ethereum/web3";
 import {Link} from "../../routes.js";
 
-const ShowCampaign = () => {
+const ShowCampaign = ({address, minimumContribution, balance, requestsLength, approversCount, manager}) => {
 
   const renderCards = () => {
-    const {
-      balance,
-      manager,
-      minimumContribution,
-      requestsCount,
-      approversCount
-    } = this.props;
-
     const items = [
       {
         header: manager,
@@ -31,7 +23,7 @@ const ShowCampaign = () => {
             'You must contribute at least this much wei to become an approver'
       },
       {
-        header: requestsCount,
+        header: requestsLength,
         meta: 'Number of Requests',
         description:
             'A request tries to withdraw money from the contract. Requests must be approved by approvers'
@@ -70,11 +62,13 @@ const ShowCampaign = () => {
           </Grid.Row>
 
           <Grid.Row>
-            <Link route={`/campaigns/${address}/requests/`}>
-              <a>
-                <Button>View Requests</Button>
-              </a>
-            </Link>
+            <Grid.Column>
+              <Link route={`/campaigns/${address}/requests/`}>
+                <a>
+                  <Button primary>View Requests</Button>
+                </a>
+              </Link>
+            </Grid.Column>
           </Grid.Row>
         </Grid>
       </>
@@ -82,8 +76,8 @@ const ShowCampaign = () => {
 }
 
 ShowCampaign.getInitialProps = async (props) => {
-  const campaign = Campaign(props.query.address);
-  const summary = campaign.methods.getSummary().call();
+  const campaign = await Campaign(props.query.address);
+  const summary = await campaign.methods.getSummary().call();
   return {
     address: props.query.address,
     minimumContribution: summary[0],

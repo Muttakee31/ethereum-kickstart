@@ -23,7 +23,7 @@ const NewRequest = ({address}) => {
         from: accounts[0]
       });
       setLoading(false);
-      Router.pushRoute(`campaigns/${address}/requests`);
+      Router.pushRoute(`/campaigns/${address}/requests`);
     } catch (e) {
       setLoading(false);
       setErrorMessage(e.message);
@@ -71,7 +71,7 @@ const NewRequest = ({address}) => {
   )
 }
 NewRequest.getInitialProps = async (props) => {
-  const address = props.query;
+  const address = props.query.address;
   return {address};
 }
 

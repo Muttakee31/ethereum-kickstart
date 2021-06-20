@@ -43,7 +43,7 @@ const ContributeForm = ({address}) => {
             <label>Amount to contribute</label>
             <Input type='number' label='ether' labelPosition='right'
                    value={contribution}
-                   onChange={(e) => setContribution(e.target.valueAsNumber)}/>
+                   onChange={(e) => setContribution(e.target.value)}/>
           </Form.Field>
           <Message error header="Oops!" content={errorMessage}/>
           <Button primary loading={loadingFlag} >Create!</Button>
