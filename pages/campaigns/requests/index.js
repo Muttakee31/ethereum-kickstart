@@ -28,7 +28,7 @@ const RequestIndex = ({address, requests, requestCount, approverCount}) => {
               <HeaderCell>Finalize</HeaderCell>
             </Row>
           </Header>
-          <Table.Body>
+          <Body>
             {requests.map((req, index) => {
               return (
                   <RequestRow
@@ -39,7 +39,7 @@ const RequestIndex = ({address, requests, requestCount, approverCount}) => {
                   />
               )
             })}
-          </Table.Body>
+          </Body>
         </Table>
         <div>Found {requestCount} request(s).</div>
       </>

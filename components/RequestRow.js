@@ -9,7 +9,6 @@ const RequestRow = ({idx, request, totalApprovers, address}) => {
     const campaign = Campaign(address);
     try {
       const accounts = await web3.eth.getAccounts();
-      console.log(accounts[0]);
       await campaign.methods.approveRequest(idx).send({from: accounts[0]});
     } catch (e) {
       console.log(e.message);
