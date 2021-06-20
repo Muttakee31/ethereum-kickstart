@@ -57,15 +57,15 @@ contract Campaign {
     // }
 
     function createRequest(string description, uint value, address recipient)
-    public restricted{
-        Request memory req = Request({
-        description: description,
-        value: value,
-        recipient: recipient,
-        completed: false,
-        approvalCount: 0
-        });
-        requests.push(req);
+        public restricted{
+            Request memory req = Request({
+                description: description,
+                value: value,
+                recipient: recipient,
+                completed: false,
+                approvalCount: 0
+            });
+            requests.push(req);
     }
 
     /*function getApprovers() public view returns (mapping()){

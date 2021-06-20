@@ -1,8 +1,7 @@
-import Campaign from "../ethereum/campaign";
-
-export React from 'react';
+import React from 'react';
 import {Button, Table} from "semantic-ui-react";
 import web3 from '../ethereum/web3';
+import Campaign from "../ethereum/campaign";
 
 const RequestRow = ({key, request, totalApprovers, address}) => {
   const readyToFinalize = request.approvalCount > totalApprovers / 2;

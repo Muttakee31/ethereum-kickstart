@@ -1,9 +1,8 @@
 import React from "react";
-import {Button, Card, Grid, Table, TableBody} from 'semantic-ui-react';
-import web3 from "../../ethereum/web3";
-import {Link} from "../../routes.js";
-import Campaign from "../../ethereum/campaign";
-import RequestRow from "../../components/RequestRow";
+import {Button, Table} from 'semantic-ui-react';
+import {Link} from "../../../routes.js";
+import Campaign from "../../../ethereum/campaign";
+import RequestRow from "../../../components/RequestRow";
 
 
 const RequestIndex = ({address, requests, requestCount, approverCount}) => {
@@ -54,6 +53,7 @@ const RequestIndex = ({address, requests, requestCount, approverCount}) => {
 RequestIndex.getInitialProps = async (props) => {
   const { address } = props.query;
   const campaign = Campaign(address);
+  console.log(campaign);
   const requestCount = campaign.methods.getRequestCount().call();
   const approverCount = campaign.methods.approvers().call();
   const requests = await Promise.all(

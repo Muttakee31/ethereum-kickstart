@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import {Button, Form, Input, Message} from 'semantic-ui-react';
-import web3 from "../../ethereum/web3";
-import {Link, Router} from "../../routes.js";
-import Campaign from "../../ethereum/campaign";
+import web3 from "../../../ethereum/web3";
+import {Link, Router} from "../../../routes.js";
+import Campaign from "../../../ethereum/campaign";
 
 const NewRequest = ({address}) => {
   const [description, setDescription] = useState('');
