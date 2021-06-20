@@ -81,7 +81,7 @@ contract Campaign {
         selectedRequest.approvals[msg.sender] = true;
     }
 
-    function finalizeRequest(uint requestIndex) public {
+    function finalizeRequest(uint requestIndex) public restricted {
         Request storage selectedRequest = requests[requestIndex];
         require(!selectedRequest.completed);
         require(selectedRequest.approvalCount > (approversCount /2));
