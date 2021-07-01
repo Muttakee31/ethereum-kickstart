@@ -6,6 +6,6 @@ routes
     .add('/campaigns/:address/requests', '/campaigns/requests/index')
     .add('/campaigns/:address/requests/new', '/campaigns/requests/newrequest')
     .add('/campaigns/:address/progress/new', '/campaigns/progress/newreport')
-    .add('/campaigns/:address/progress/:index', '/campaigns/progress/details');
+    .add('/campaigns/:address/progress', '/campaigns/progress/details');
 
 module.exports = routes;
