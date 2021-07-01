@@ -1,17 +1,25 @@
 import Campaign from "../../../ethereum/campaign";
 import ShowCampaign from "../show";
 import React from "react";
-import {Header, Image, Progress, Segment} from "semantic-ui-react";
+import {Button, Grid, Header, Image, Progress, Segment} from "semantic-ui-react";
+import {Link} from "../../../routes";
 
 const ProgressDetails = ({address, rate, description, imagePath}) => {
   return (
     <>
-      <h3>Show Progress report</h3>
+      <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+        <h3 style={{verticalAlign: 'middle'}}>Show Progress report</h3>
+        <Link route={`/campaigns/${address}/progress/new`}>
+          <a>
+            <Button color='instagram'>Update progress</Button>
+          </a>
+        </Link>
+      </div>
       <Header as='h5' attached='top'>
         Progress
       </Header>
       <Segment attached style={{borderTop: 'none'}}>
-        <Progress percent={rate} color='teal' progress />
+        <Progress percent={rate} color='red' progress />
       </Segment>
       <Header as='h5' attached>
         Description
@@ -24,7 +32,7 @@ const ProgressDetails = ({address, rate, description, imagePath}) => {
       </Header>
       <Segment attached style={{borderTop: 'none'}}>
         {imagePath ?
-          <Image src={`https://ipfs.io/ipfs/${imagePath}`} height='200' width='200' />
+          <Image src={`https://ipfs.io/ipfs/${imagePath}`} height='200' />
           :
           <div />
         }

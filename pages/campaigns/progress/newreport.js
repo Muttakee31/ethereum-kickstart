@@ -3,13 +3,15 @@ import Campaign from "../../../ethereum/campaign";
 import web3 from "../../../ethereum/web3";
 import {Link, Router} from "../../../routes";
 import {Button, Form, Input, Message} from "semantic-ui-react";
+import SliderInput from "../../../components/SliderInput";
+
 const { create } = require('ipfs-http-client');
 const ipfs = create({ host: '127.0.0.1', port: 5001, protocol: 'http' }); // leaving out the arguments will default to these values
 
-const ProgressReportForm = ({address}) => {
-  const [description, setDescription] = useState('');
+const ProgressReportForm = ({address, prevProgress, prevDescription}) => {
+  const [description, setDescription] = useState(prevDescription);
   const [image, setImage] = useState('');
-  const [progress, setProgress] = useState(0);
+  const [progress, setProgress] = useState(prevProgress);
   const [errorMessage, setErrorMessage] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -50,10 +52,7 @@ const ProgressReportForm = ({address}) => {
       <Form onSubmit={onSubmit} error={!!errorMessage}>
         <Form.Field>
           <label>Progress rate</label>
-          <Input
-            value={progress}
-            onChange={event => setProgress(event.target.value)}
-          />
+          <SliderInput progressRate={prevProgress} setProgress={setProgress}/>
         </Form.Field>
         <Form.Field>
           <label>Description</label>
@@ -81,8 +80,13 @@ const ProgressReportForm = ({address}) => {
 }
 
 ProgressReportForm.getInitialProps = async (props) => {
-  const address = props.query.address;
-  return {address};
+  const campaign = await Campaign(props.query.address);
+  const progress = await campaign.methods.progress().call();
+  return {
+    address: props.query.address,
+    prevProgress: progress['rate'],
+    prevDescription: progress['description'],
+  };
 }
 
 export default ProgressReportForm;
