@@ -62,10 +62,24 @@ const ShowCampaign = ({address, minimumContribution, balance, requestsLength, ap
           </Grid.Row>
 
           <Grid.Row>
-            <Grid.Column>
+            <Grid.Column width={3}>
               <Link route={`/campaigns/${address}/requests/`}>
                 <a>
-                  <Button primary>View Requests</Button>
+                  <Button color='linkedin'>View Requests</Button>
+                </a>
+              </Link>
+            </Grid.Column>
+            <Grid.Column width={3}>
+              <Link route={`/campaigns/${address}/progress/`}>
+                <a>
+                  <Button color='green'>View progress</Button>
+                </a>
+              </Link>
+            </Grid.Column>
+            <Grid.Column width={3}>
+              <Link route={`/campaigns/${address}/progress/new`}>
+                <a>
+                  <Button color='instagram'>Submit progress</Button>
                 </a>
               </Link>
             </Grid.Column>
