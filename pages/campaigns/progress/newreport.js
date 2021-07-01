@@ -23,7 +23,6 @@ const ProgressReportForm = ({address, prevProgress, prevDescription}) => {
     try {
       const accounts = await web3.eth.getAccounts();
       const result = await ipfs.add(image);
-      console.log(result.path);
 
       await campaign.methods.createProgressReport(progress, description, result.path).send({
         from: accounts[0]
@@ -86,6 +85,7 @@ ProgressReportForm.getInitialProps = async (props) => {
     address: props.query.address,
     prevProgress: progress['rate'],
     prevDescription: progress['description'],
+    prevImage: progress['imagePath'],
   };
 }
 

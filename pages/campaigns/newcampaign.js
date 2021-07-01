@@ -15,7 +15,7 @@ const CreateCampaign = ({}) => {
     setLoadingFlag(true);
     try{
       const accounts = await web3.eth.getAccounts();
-      console.log(accounts);
+      // console.log(accounts);
       await factory.methods.createCampaign(minContribution).send({
         from: accounts[0]
       });
