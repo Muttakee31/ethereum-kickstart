@@ -79,7 +79,7 @@ const ShowCampaign = ({address, minimumContribution, balance, requestsLength, ap
             <Grid.Column width={3}>
               <Link route={`/campaigns/${address}/progress/new`}>
                 <a>
-                  <Button color='instagram'>Submit progress</Button>
+                  <Button color='instagram'>Update progress</Button>
                 </a>
               </Link>
             </Grid.Column>
