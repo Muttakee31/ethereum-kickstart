@@ -1,10 +1,5 @@
 pragma solidity ^0.4.17;
 
-/** 
- * @title Ballot
- * @dev Implements voting process along with vote delegation
- */
-
 contract CampaignFactory {
     address[] public deployedCampaigns;
 
@@ -28,10 +23,17 @@ contract Campaign {
         mapping(address => bool) approvals;
     }
 
+    struct Progress {
+        uint rate;
+        string description;
+        string imagePath;
+    }
+
     address public manager;
     uint public minimumContribution;
     mapping(address => bool) public approvers;
     Request[] public requests;
+    Progress public progress;
     uint public approversCount;
 
     modifier restricted() {
@@ -66,6 +68,15 @@ contract Campaign {
                 approvalCount: 0
             });
             requests.push(req);
+    }
+
+    function createProgressReport(uint rate, string description, string hash) public restricted {
+        Progress memory pro = Progress({
+        rate: rate,
+        description: description,
+        imagePath: hash
+        });
+        progress = pro;
     }
 
     /*function getApprovers() public view returns (mapping()){
